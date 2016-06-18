@@ -1,22 +1,32 @@
 $(document).ready(function(){
 	$('body').css({
-		"margin": "0",
+		"display": "flex"
+	});
+
+	$('.panel-wrapper').css({
+		"background-color": "#B03A2E",
+		"width": "700px",
+		"height": "700px",
+		"margin": "5% auto",
+		"display": "flex",
+		"border-radius": "16px"
 	});
 
 	$('.panel-container').css({
-		"margin": "10% auto",
 		"width": "600px",
+		"margin": "auto",
+		"padding": "4px",
+		"border-radius": "4px",
 		"background-color": "rgb(235, 224, 224)"
 	});
 
 	var containerWidth = $('.panel-container').width();
 
-	drawPanels(40, containerWidth);
+	drawPanels(containerWidth);
 });
 
-function drawPanels(size, containerWidth) {
+function drawPanels(containerWidth, size=28) {
 	console.log("hi");
-	size = size || 40;
 	var panelSideLength = containerWidth/size - 2;
 	console.log(size);
 	for(var i = 0; i < size; i++) {
@@ -28,8 +38,16 @@ function drawPanels(size, containerWidth) {
 		"margin": "0",
 		"width": panelSideLength,
 		"height": panelSideLength,
-		"border": "1px solid black",
-		"float": "left"
-	});
+		"border": "1px solid rgb(235, 224, 224)",
+		"float": "left",
+		"background-color": "#17202A",
+		"opacity": "0.1"
+	})
+		.hover(function() {
+			var $currentOpacity = $(this).css('opacity');
+			if ($currentOpacity < 1)
+				$('.panel').css('opacity', $currentOpacity + 0.1);
+		});
+
 }
 	
