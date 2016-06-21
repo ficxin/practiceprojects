@@ -1,2 +1,2 @@
-# theodinproject
-Project showcase from Odin curriculum
+# practiceproject
+A collect of projects made to learn and practice web development
