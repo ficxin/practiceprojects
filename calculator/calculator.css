@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'Digital';
+    src: url('digital.TTF');
+}
+
+html {
+	margin: 0;
+	height:100%;
+}
+
+body {
+	background-color:	#d6bc80;
+	margin: 0;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main {
+	box-shadow:-6px 24px 80px 8px #64491c;
+	border-radius: 32px;
+}
+
+.calculator {
+	padding-bottom: 14px;
+	border-bottom: 1px solid #66563a;
+	border-radius: 18px;
+	background: #ece9da;
+	background: linear-gradient(#ffffff, #a99b80);
+	box-shadow: 0 10px #352414;
+}
+
+.wrapper {
+	padding: 10px 15px 15px;
+	background: #ece9da;
+	background: linear-gradient(#eee7d7, #d2cdb7);
+	border-radius: 16px;
+	border-bottom: 2px solid #cac5b2;
+	display: flex;
+	flex-direction: column; 
+}
+
+.logo-container {
+	margin: 16px;
+	font-family: sans-serif;
+	align-self: flex-start;
+	flex-direction: column;
+	align-items: center;
+	border: 1px solid #9d998c;
+	border-radius: 2px;
+}
+
+img {
+	padding: 2px 6px 3px;
+	height: 10px;
+	background-color: #29241f;
+}
+
+p#model {
+	margin: 0;
+	padding: 1px 10px 0;
+	font-size: 9px;
+	transform: scale(1.2,1);
+	color: #5b544a;
+	background-color: #cec8bc;
+}
+
+section {
+	display: flex;
+	justify-content: center;
+}
+
+.display-container {
+	align-items: flex-end;
+	width: 260px;
+	height: 100px;
+	background-color: #131811;
+	border-top: 2px solid #897c5a;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;
+}
+
+.display {
+	width: 230px;
+	height: 64px;
+	background-color: #141912;
+	border: 1px solid #30312b;
+	border-radius: 4px;
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.led-container {
+	width: 198px;
+	height: 42px;
+	background-color: #0b170d;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+p#led {
+	margin: 0;
+	width: 194px;
+	height: 32px;
+	background-color: #102414;
+	color: #279c78;
+	text-align: right;
+	font-family: 'Digital';
+	line-height: 38px;
+	font-size: 36px;
+	letter-spacing: 4px;
+}
+
+.button-container {
+	flex-wrap: wrap;
+	align-content: flex-end;
+	border: 1px solid #a1998d;
+	border-top: 1px solid #081f0f;
+	border-bottom-left-radius: 12px;
+	border-bottom-right-radius: 12px;
+	width: 260px;
+	height: 250px;
+	background-color: #302b25;
+	box-sizing: border-box;
+	padding: 4px;
+}
+
+button {
+	font-family: 'Nunito', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	color: #231b18  ;
+	background-color: #ede7d9;
+	min-height: 42px;
+	min-width: 42px;
+	border-radius: 8px;
+	margin: 4px;
+}
+
+button:focus {
+	outline: 0;
+}
+
+.blue {
+	background-color: #316891;
+	color: #dcdbd0;
+}
+
+.red {
+	background-color: #ad2004;
+	color: #e6d3c5;
+
+}
