@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Digital';
-    src: url('digital.TTF');
+  font-family: 'Digital';
+  src: url('digital.TTF');
 }
 
 html {
@@ -18,7 +18,7 @@ body {
 }
 
 main {
-	box-shadow:-6px 24px 80px 8px #64491c;
+	box-shadow:-4px 20px 54px 8px #64491c;
 	border-radius: 32px;
 }
 
@@ -115,6 +115,10 @@ p#led {
 	letter-spacing: 4px;
 }
 
+span#decimal {
+	letter-spacing: 0px;
+}
+
 .button-container {
 	flex-wrap: wrap;
 	align-content: flex-end;
@@ -132,8 +136,7 @@ p#led {
 button {
 	font-family: 'Nunito', sans-serif;
 	font-size: 18px;
-	font-weight: bold;
-	color: #231b18  ;
+	color: #231b18;
 	background-color: #ede7d9;
 	min-height: 42px;
 	min-width: 42px;
@@ -153,5 +156,4 @@ button:focus {
 .red {
 	background-color: #ad2004;
 	color: #e6d3c5;
-
 }
