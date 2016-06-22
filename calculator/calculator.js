@@ -1,64 +1,92 @@
 var defaultValue = '<span id="decimal">0.</span>',
  		currentValue = "",
-		totalValue = "";
+		totalValue = "",
+		previousOperator = "";
 
 document.body.addEventListener("click", function(event) {
+	var buttonContent = event.target.textContent;
+
 	if (event.target.nodeName == 'BUTTON')
-		if (Number(event.target.textContent)) {
-			currentValue += event.target.textContent;
+		if (Number(buttonContent) || buttonContent==="0") {
+			currentValue += buttonContent;
 			display(currentValue, digitalize);
 		} 
-		else if (event.target.textContent == "CA") {
+		else if (buttonContent == "CA") {
 			currentValue = "";
 			totalValue = "";
 			display(defaultValue);
 		}
-		else if (event.target.textContent == "+") {
+		else if (buttonContent == "+") {
+			if (!previousOperator)
+				updatePreviousOperator(buttonContent);
+
 			if (currentValue) {
 				if (totalValue) {
-					totalValue = add(Number(totalValue), Number(currentValue));
+					updateTotalValue(Number(totalValue), Number(currentValue), previousOperator);
 				} else {
 					totalValue = currentValue;
 				}
 				currentValue = "";
+				updatePreviousOperator(buttonContent);
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (event.target.textContent == "–") {
+		else if (buttonContent == "–") {
+			if (!previousOperator)
+				previousOperator = "-";
+
 			if (currentValue) {
 				if (totalValue) {
-					totalValue = subtract(Number(totalValue), Number(currentValue));
+					updateTotalValue(Number(totalValue), Number(currentValue), previousOperator);
 				} else {
 					totalValue = currentValue;
 				}
 				currentValue = "";
+				updatePreviousOperator(buttonContent);
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (event.target.textContent == "x") {
+		else if (buttonContent == "x") {
+			if (!previousOperator)
+				updatePreviousOperator(buttonContent);
+
 			if (currentValue) {
 				if (totalValue) {
-					totalValue = multiply(Number(totalValue), Number(currentValue));
+					updateTotalValue(Number(totalValue), Number(currentValue), previousOperator);
 				} else {
 					totalValue = currentValue;
 				}
 				currentValue = "";
+				updatePreviousOperator(buttonContent);
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (event.target.textContent == "÷") {
+		else if (buttonContent == "÷") {
+			if (!previousOperator)
+				updatePreviousOperator(buttonContent);
+
 			if (currentValue) {
 				if (totalValue) {
-					totalValue = divide(Number(totalValue), Number(currentValue));
+					updateTotalValue(Number(totalValue), Number(currentValue), previousOperator);
 				} else {
 					totalValue = currentValue;
 				}
 				currentValue = "";
+				updatePreviousOperator(buttonContent);
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (event.target.textContent == "=") {
-			console.log('equal');
+		else if (buttonContent == "=") {
+			if (currentValue) {
+				if (totalValue) {
+					updateTotalValue(Number(totalValue), Number(currentValue), previousOperator);
+				} else {
+					totalValue = currentValue;
+				}
+				currentValue = "";
+				previousOperator = "";
+				display(totalValue.toString(), digitalize);
+			}
 		}
 });
 
@@ -76,6 +104,26 @@ function display(value, callback) {
 	} else {
 		document.getElementById('led').innerHTML = value;
 	}
+}
+
+function updateTotalValue(n1, n2, operator) {
+	switch (previousOperator) {
+		case "+":
+			totalValue = n1 + n2;
+			break;
+		case "-":
+			totalValue = n1 - n2;
+			break;
+		case "x":
+			totalValue = n1 * n2;
+			break;
+		case "÷":
+			totalValue = n1 / n2;
+	}
+}
+
+function updatePreviousOperator(operator) {
+	previousOperator = operator
 }
 
 function add(n1, n2) {
