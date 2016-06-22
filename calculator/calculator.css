@@ -142,6 +142,7 @@ button {
 	min-width: 42px;
 	border-radius: 8px;
 	margin: 4px;
+	cursor: pointer;
 }
 
 button:focus {
