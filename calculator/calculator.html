@@ -3,23 +3,50 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="calculator.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="calculator.js" type="text/javascript" charset="utf-8"></script>
+  <script src="calculator.js" type="text/javascript" charset="utf-8" async></script>
 	<title>Document</title>
 </head>
 <body>
-	<div class=button-container>
-		<div id="button">0</div>
-		<div class="button">1</div>
-		<div class="button">2</div>
-		<div class="button">3</div>
-		<div class="button">4</div>
-		<div class="button">5</div>
-		<div class="button">6</div>
-		<div class="button">7</div>
-		<div class="button">8</div>
-		<div class="button">9</div>
-	</div>
-	
+	<main>
+		<div class="calculator">
+			<div class="wrapper">
+				<section class="logo-container">
+					<img src="imgs/sanyo.svg">
+					<p id="model">CX - 8034</p>
+				</section>
+				<section class="display-container">
+					<div class="display">
+						<div class="led-container">
+							<p id="led">888888888</p>
+						</div>
+					</div>
+				</section>
+				<section class=button-container>
+					<button class="blue">ES</button>
+					<button>7</button>
+					<button>8</button>
+					<button>9</button>
+					<button class="blue">X</button>
+					<button class="blue">%</button>
+					<button>4</button>
+					<button>5</button>
+					<button>6</button>
+					<button class="blue">÷</button>
+					<button class="blue">CK</button>
+					<button>1</button>
+					<button>2</button>
+					<button>3</button>
+					<button class="blue">+</button>
+					<button class="blue">CA</button>
+					<button>0</button>
+					<button>.</button>
+					<button class="red">–</button>
+					<button class="blue">=</button>
+				</section>
+			</div>
+		</div>	
+	</main>
 </body>
 </html>
