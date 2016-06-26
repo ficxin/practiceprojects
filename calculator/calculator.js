@@ -93,8 +93,17 @@ document.body.addEventListener("click", function(event) {
 function digitalize(value) {
 	if (value.length > 9)
 		value = value.slice(0, 9);
-	var span = '<span id="decimal">' + value.slice(value.length-1) + '.</span>';
-	var result = value.slice(0, value.length-1) + span;
+	
+	var decimalIndex = value.indexOf(".");
+	if (decimalIndex !== -1) {
+		var span = '<span id="decimal">' + value.substring(decimalIndex-1, decimalIndex+1) + '</span>';
+		var result = value.substring(0, decimalIndex-1) + span + value.substring(decimalIndex+1, value.length);
+	} else {
+		var span = '<span id="decimal">' + value[value.length-1] + '.</span>';	
+		var result = value.substring(0, value.length-1) + span;
+	}
+  console.log(value);
+  console.log(result);
 	return result;
 }
 
@@ -125,19 +134,3 @@ function updateTotalValue(n1, n2, operator) {
 function updatePreviousOperator(operator) {
 	previousOperator = operator
 }
-
-function add(n1, n2) {
-	return n1 + n2;
-};
-
-function subtract(n1, n2) {
-	return n1 - n2;
-};
-
-function multiply(n1, n2) {
-	return n1 * n2;
-};
-
-function divide(n1, n2) {
-	return n1 / n2;
-};
