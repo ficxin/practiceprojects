@@ -6,10 +6,16 @@ var defaultValue = '<span id="decimal">0.</span>',
 document.body.addEventListener("click", function(event) {
 	var buttonContent = event.target.textContent;
 
-	if (event.target.nodeName == 'BUTTON')
+	if (event.target.nodeName == 'BUTTON') {
 		if (Number(buttonContent) || buttonContent==="0") {
+			if (previousOperator == "=") {
+				previousOperator = "";
+				totalValue = "";
+			};
+
 			currentValue += buttonContent;
 			display(currentValue, digitalize);
+			console.log(previousOperator)
 		} 
 		else if (buttonContent == "CA") {
 			currentValue = "";
@@ -17,7 +23,7 @@ document.body.addEventListener("click", function(event) {
 			display(defaultValue);
 		}
 		else if (buttonContent == "+") {
-			if (!previousOperator)
+			if (!previousOperator || previousOperator == "=")
 				updatePreviousOperator(buttonContent);
 
 			if (currentValue) {
@@ -31,7 +37,7 @@ document.body.addEventListener("click", function(event) {
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (buttonContent == "–") {
+		else if (buttonContent == "–" || buttonContent==="0") {
 			if (!previousOperator)
 				previousOperator = "-";
 
@@ -46,7 +52,7 @@ document.body.addEventListener("click", function(event) {
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (buttonContent == "x") {
+		else if (buttonContent == "x" || buttonContent==="0") {
 			if (!previousOperator)
 				updatePreviousOperator(buttonContent);
 
@@ -61,7 +67,7 @@ document.body.addEventListener("click", function(event) {
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (buttonContent == "÷") {
+		else if (buttonContent == "÷" || buttonContent==="0") {
 			if (!previousOperator)
 				updatePreviousOperator(buttonContent);
 
@@ -84,10 +90,11 @@ document.body.addEventListener("click", function(event) {
 					totalValue = currentValue;
 				}
 				currentValue = "";
-				previousOperator = "";
+				previousOperator = "=";
 				display(totalValue.toString(), digitalize);
 			}
 		}
+	};
 });
 
 function digitalize(value) {
@@ -102,8 +109,6 @@ function digitalize(value) {
 		var span = '<span id="decimal">' + value[value.length-1] + '.</span>';	
 		var result = value.substring(0, value.length-1) + span;
 	}
-  console.log(value);
-  console.log(result);
 	return result;
 }
 
