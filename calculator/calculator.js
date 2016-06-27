@@ -7,15 +7,17 @@ document.body.addEventListener("click", function(event) {
 	var buttonContent = event.target.textContent;
 
 	if (event.target.nodeName == 'BUTTON') {
-		if (Number(buttonContent) || buttonContent==="0") {
-			if (previousOperator == "=") {
-				previousOperator = "";
-				totalValue = "";
-			};
-
+		if (Number(buttonContent) || buttonContent == "0") {
+			isEqualOperator(previousOperator);
 			currentValue += buttonContent;
 			display(currentValue, digitalize);
-			console.log(previousOperator)
+		}
+		else if (buttonContent == ".") {
+			if (currentValue == "")
+				currentValue = "0";
+			if (currentValue.indexOf(".") === -1)
+				currentValue += buttonContent;
+			display(currentValue, digitalize);	
 		} 
 		else if (buttonContent == "CA") {
 			currentValue = "";
@@ -37,8 +39,8 @@ document.body.addEventListener("click", function(event) {
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (buttonContent == "–" || buttonContent==="0") {
-			if (!previousOperator)
+		else if (buttonContent == "–") {
+			if (!previousOperator || previousOperator == "=")
 				previousOperator = "-";
 
 			if (currentValue) {
@@ -52,8 +54,8 @@ document.body.addEventListener("click", function(event) {
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (buttonContent == "x" || buttonContent==="0") {
-			if (!previousOperator)
+		else if (buttonContent == "x") {
+			if (!previousOperator || previousOperator == "=")
 				updatePreviousOperator(buttonContent);
 
 			if (currentValue) {
@@ -67,8 +69,8 @@ document.body.addEventListener("click", function(event) {
 				display(totalValue.toString(), digitalize);
 			}
 		}
-		else if (buttonContent == "÷" || buttonContent==="0") {
-			if (!previousOperator)
+		else if (buttonContent == "÷") {
+			if (!previousOperator || previousOperator == "=")
 				updatePreviousOperator(buttonContent);
 
 			if (currentValue) {
@@ -138,4 +140,11 @@ function updateTotalValue(n1, n2, operator) {
 
 function updatePreviousOperator(operator) {
 	previousOperator = operator
+}
+
+function isEqualOperator(operator) {
+	if (operator == "=") {
+		previousOperator = "";
+		totalValue = "";
+	};
 }
