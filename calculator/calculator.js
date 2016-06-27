@@ -6,10 +6,18 @@ var defaultValue = '<span id="decimal">0.</span>',
 document.body.addEventListener("click", function(event) {
 	var buttonContent = event.target.textContent;
 
-	if (event.target.nodeName == 'BUTTON')
-		if (Number(buttonContent) || buttonContent==="0") {
+	if (event.target.nodeName == 'BUTTON') {
+		if (Number(buttonContent) || buttonContent == "0") {
+			isEqualOperator(previousOperator);
 			currentValue += buttonContent;
 			display(currentValue, digitalize);
+		}
+		else if (buttonContent == ".") {
+			if (currentValue == "")
+				currentValue = "0";
+			if (currentValue.indexOf(".") === -1)
+				currentValue += buttonContent;
+			display(currentValue, digitalize);	
 		} 
 		else if (buttonContent == "CA") {
 			currentValue = "";
@@ -17,7 +25,7 @@ document.body.addEventListener("click", function(event) {
 			display(defaultValue);
 		}
 		else if (buttonContent == "+") {
-			if (!previousOperator)
+			if (!previousOperator || previousOperator == "=")
 				updatePreviousOperator(buttonContent);
 
 			if (currentValue) {
@@ -32,7 +40,7 @@ document.body.addEventListener("click", function(event) {
 			}
 		}
 		else if (buttonContent == "–") {
-			if (!previousOperator)
+			if (!previousOperator || previousOperator == "=")
 				previousOperator = "-";
 
 			if (currentValue) {
@@ -47,7 +55,7 @@ document.body.addEventListener("click", function(event) {
 			}
 		}
 		else if (buttonContent == "x") {
-			if (!previousOperator)
+			if (!previousOperator || previousOperator == "=")
 				updatePreviousOperator(buttonContent);
 
 			if (currentValue) {
@@ -62,7 +70,7 @@ document.body.addEventListener("click", function(event) {
 			}
 		}
 		else if (buttonContent == "÷") {
-			if (!previousOperator)
+			if (!previousOperator || previousOperator == "=")
 				updatePreviousOperator(buttonContent);
 
 			if (currentValue) {
@@ -84,10 +92,11 @@ document.body.addEventListener("click", function(event) {
 					totalValue = currentValue;
 				}
 				currentValue = "";
-				previousOperator = "";
+				previousOperator = "=";
 				display(totalValue.toString(), digitalize);
 			}
 		}
+	};
 });
 
 function digitalize(value) {
@@ -102,8 +111,6 @@ function digitalize(value) {
 		var span = '<span id="decimal">' + value[value.length-1] + '.</span>';	
 		var result = value.substring(0, value.length-1) + span;
 	}
-  console.log(value);
-  console.log(result);
 	return result;
 }
 
@@ -133,4 +140,11 @@ function updateTotalValue(n1, n2, operator) {
 
 function updatePreviousOperator(operator) {
 	previousOperator = operator
+}
+
+function isEqualOperator(operator) {
+	if (operator == "=") {
+		previousOperator = "";
+		totalValue = "";
+	};
 }
